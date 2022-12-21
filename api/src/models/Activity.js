@@ -7,10 +7,9 @@ module.exports = (sequelize) => {
     "activity",
     {
       id: {
-        type: DataTypes.UUID,
+        type: DataTypes.STRING(3),
         primaryKey: true,
         allowNull: false,
-        defaultValue: DataTypes.UUIDV4,
       },
       name: {
         type: DataTypes.STRING,
