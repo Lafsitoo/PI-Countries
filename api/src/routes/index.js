@@ -7,7 +7,7 @@ const activitys = require("./activitys.routes");
 
 // PUERTOS
 router.use("/countrys", countrys);
-// router.use("/activitys", activitys);
+router.use("/activitys", activitys);
 
 // Exportamos
 module.exports = router;
