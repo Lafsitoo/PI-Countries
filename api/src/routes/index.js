@@ -2,12 +2,12 @@ const { Router } = require("express");
 const router = Router();
 
 // RUTAS
-const countrys = require("./countrys.routes");
-const activitys = require("./activitys.routes");
+const countries = require("./countries.routes");
+const activities = require("./activities.routes");
 
 // PUERTOS
-router.use("/countrys", countrys);
-router.use("/activitys", activitys);
+router.use("/countries", countries);
+router.use("/activities", activities);
 
 // Exportamos
 module.exports = router;

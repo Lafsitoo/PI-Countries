@@ -6,11 +6,6 @@ module.exports = (sequelize) => {
   sequelize.define(
     "activity",
     {
-      id: {
-        type: DataTypes.STRING(3),
-        primaryKey: true,
-        allowNull: false,
-      },
       name: {
         type: DataTypes.STRING,
         allowNull: false,
