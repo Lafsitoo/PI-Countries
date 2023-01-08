@@ -1,5 +1,4 @@
 const { Router } = require("express");
-const { Country, Activity } = require("../db");
 const { getAllCountrys } = require("../controllers/index");
 const router = Router();
 
@@ -45,45 +44,6 @@ router.get("/:id", async (req, res) => {
   } catch (error) {
     res.status(404).send(error);
     console.log(error);
-  }
-});
-
-// CREAR UN PAÍS NUEVO
-router.post("/", async (req, res) => {
-  // Info requerida (con Activity)
-  const {
-    name,
-    flags,
-    continent,
-    capital,
-    subregion,
-    area,
-    population,
-    activity,
-    createByDb,
-  } = req.body;
-  try {
-    // Creación sin Activity
-    const countryCreated = await Country.create({
-      name,
-      flags,
-      continent,
-      capital,
-      subregion,
-      area,
-      population,
-      createByDb,
-    });
-    // Busqueda de Activity en su respectiva tabla
-    const activityInDb = await Activity.findAll({
-      where: { name: activity },
-    });
-    // Insertamos la activity al nuevo pais
-    countryCreated.addActivity(activityInDb)
-    res.status(200).send(`¡Felicidades! ${name} creado con Exito`)
-  } catch (error) {
-    res.status(404).send(error);
-    console.log(error)
   }
 });
 
