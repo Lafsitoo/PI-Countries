@@ -18,14 +18,13 @@ router.get("/", async (req, res) => {
         ? res.status(200).json(countryName)
         : res
             .status(404)
-            .send(`No se ha encuentrado ${name} en nuestra bibloteca`);
+            .send({error: `No se ha encuentrado ${name} en nuestra bibloteca`});
     } else {
       // Sino devolvemos todos los paises
       res.status(200).send(allCountrys);
     }
   } catch (error) {
-    res.status(404).send(error);
-    console.log(error);
+    res.status(404).send({error: error.message});
   }
 });
 
@@ -36,14 +35,13 @@ router.get("/:id", async (req, res) => {
     const countrysTotal = await getAllCountrys();
     // ¿Hay ID?
     if (id) {
-      const countrysID = await countrysTotal.filter((e) => e.id === id);
+      const countrysID = await countrysTotal.filter((e) => e.id == id);
       countrysID.length
         ? res.status(200).send(countrysID)
-        : res.status(404).send("No fue posible encontrar el país");
+        : res.status(404).send({ error: "No fue posible encontrar el país"});
     }
   } catch (error) {
-    res.status(404).send(error);
-    console.log(error);
+    res.status(404).send({error: error.message});
   }
 });
 
